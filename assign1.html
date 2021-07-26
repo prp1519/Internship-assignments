@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignemnt 1</title>
+</head>
+<body>
+    <input type="text" id="array" placeholder="enter array">
+    <input type="text" id="answer" placeholder="answer here">
+    <hr>
+    <button id="mean" onclick="array('mean')">mean</button>
+    <br>
+    <button id="median" onclick="array('median')" >median</button>
+    <br>
+    <button id="mode" onclick="array('mode')">mode</button>
+    <br>
+    <button id="variance" onclick="array('variance')">variance</button>
+    <br>
+    <button id="sd" onclick="array('sd')">standard deviation</button>
+    <br>
+   <!--- <br>
+    <button id="modef" onclick="modef('arrayz')">mode</button>
+    <br> -->
+
+
+    <script>
+
+        /*function modef(arrayz) 
+        {
+            let arrayabc = document.getElementById("modef").value.split(',');
+
+            // as result can be bimodal or multimodal,
+            // the returned result is provided as an array
+            // mode of [3, 5, 4, 4, 1, 1, 2, 3] = [1, 3, 4]
+            var modef = [],
+                count = [],
+                i,
+                number,
+                maxIndex = 0;
+            for (i = 0; i < arrayz.length; i += 1) {
+                number = arrayz[i];
+                count[number] = (count[number] || 0) + 1;
+                if (count[number] > maxIndex) {
+                    maxIndex = count[number];
+                }
+            }
+            for (i in count) if (count.hasOwnProperty(i)) {
+                if (count[i] === maxIndex) {
+                    modef.push(Number(i));
+                }
+            }
+            window.alert(modef)
+            return modef;
+        }*/
+
+        function array(arr)
+        {
+            let array1 = document.getElementById("array").value.split(',');
+
+            
+            switch(arr)
+            {
+                case "mean" :
+                    let total = 0;
+                    for(let i=0;i<array1.length;i++){
+                        total = total + Number(array1[i]) ;
+                    }
+                    z=total/array1.length;
+                    document.getElementById("answer").value=z;
+                break;
+                
+                case "median" :
+                    for(let i=0;i<array1.length;i++){
+                        if(array1.length == 1){ //doubt here == 0 
+                            document.getElementById("answer").value=Number(array1[0]);
+                            //document.getElementById("answer").value="enter atleast one value";
+                        }
+                        else{
+                            if(array1.length %2 == 0){
+                                document.getElementById("answer").value=(Number(array1[(array1.length/2)-1])+Number(array1[array1.length/2]))/2;
+                            }
+                            else{
+                                document.getElementById("answer").value=(Number(array1[(array1.length+1)/2]));
+                            }
+                        }
+
+                    }
+                break;
+                
+                case "mode" :
+                    var arrstore = [];
+                    var k = 0 ;
+                    var oparr= [];
+                    var opcont = 0 ;
+                    var ret = false;
+                    for(let i=0;i<array1.length;i++)
+                    { //5,3,5,3,4 len 3
+                        var count=0;
+                        for(let j=0;j<array1.length;j++)
+                        { 
+                            if(array1[i]===array1[j])
+                            { 
+                                count = count + 1;
+                                if(count>=2){
+                                    arrstore[k] = array1[i];
+                                    k = k + 1 ;
+                                }
+                            }
+                        }
+                       /* for(let l=0;l<arrstore.length;l++)
+                        {
+                            for(let m=0;m<oparr.length;m++)
+                            {
+                            if(arrstore[l] == oparr[m])
+                            {
+                                    ret = true;
+                                }
+                            }
+                            opcont = opcont + 1;
+                            if(count==1 && ret == false)
+                            {
+                                oparr.push(arrstore[l]);
+                            }
+                            ret = false;
+                            opcount = 0 ;
+                        }
+                        document.getElementById("answer").value=oparr;*/
+                        document.getElementById("answer").value=arrstore;    
+                    }
+                break;
+                
+                case "variance":
+                    let stotal = 0;
+                    let sumtotal = 0;
+                    let totalarr = [];
+                    for(let i=0;i<array1.length;i++){
+                        stotal = stotal + Number(array1[i]) ;
+                    }
+                    z=stotal/array1.length;
+                    for(let j=0;j<array1.length;j++){
+                        totalarr[j] = Number(array1[j]) - z ;
+                    }
+                    for(let k=0;k<totalarr.length;k++)
+                    {
+                        sumtotal = sumtotal + Number(totalarr[k]*totalarr[k]);
+                    }
+                    document.getElementById("answer").value=sumtotal/(array1.length-1);
+                break;
+
+                case "sd":
+                    let satotal = 0;
+                    let sumatotal = 0;
+                    let totalarra = [];
+                    for(let i=0;i<array1.length;i++){
+                        satotal = satotal + Number(array1[i]) ;
+                    }
+                    z=satotal/array1.length;
+                    for(let j=0;j<array1.length;j++){
+                        totalarra[j] = Number(array1[j]) - z ;
+                    }
+                    for(let k=0;k<totalarra.length;k++)
+                    {
+                        sumatotal = sumatotal + Number(totalarra[k]*totalarra[k]);
+                    }
+                    q=sumatotal/(array1.length-1);
+                    document.getElementById("answer").value=Math.sqrt(q);
+                break;
+                    
+            }
+        }
+    </script>
+</body>
+</html>
