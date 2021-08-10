@@ -1,2 +1,2 @@
-# Intership-assignments
+# Internship-assignments
  
